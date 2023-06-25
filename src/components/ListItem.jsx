@@ -1,7 +1,7 @@
 import Home from "./Home.webp";
-import "./card.css";
+import "./listItem.css";
 
-export default function Card(){
+export default function ListItem(){
     return(
         <img src={Home} className="cardImg"></img>
     );

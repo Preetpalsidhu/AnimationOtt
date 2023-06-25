@@ -1,11 +1,11 @@
-import Navbar from "./components/Navbar.jsx";
-import Banner from "./components/Banner.jsx";
-import Card from "./components/Card.jsx";
+import Navbar from "./components/Navbar";
+import Banner from "./components/Banner";
+import ListSlider from "./components/ListSlider";
 function App() {
   return (<>
    <Navbar/>
    <Banner/>
-   <Card/>
+   <ListSlider/>
    </>
   );
 }
