@@ -10,20 +10,25 @@
 }
 
 .wrapper {
-  display: flex;
-  width: max-content;
+    display: flex;
+    width: max-content;
 }
 
 .listContainer {
+    display: flex;
   margin-left: 50px;
-
-  width: max-content;
+  transform: translateX(10px);
+  transition: transform 1s linear;
 }
 
 .sliderBtn {
-  display: flex;
-  align-items: center;
+  color: white;
+  background-color: rgb(22,22,22,.5);
   height: 20vh;
   width: 5rem;
   z-index: 3;
+}
+
+.right{
+    right: 0px;
 }

@@ -1,4 +1,6 @@
 .cardImg{
-    height: 20vh;
+    width: 235px;
     border-radius: .5rem;
+    margin-left: 5px;
+    object-fit: cover;
 }
