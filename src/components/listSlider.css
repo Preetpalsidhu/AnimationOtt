@@ -1,21 +1,29 @@
-.list{
-    margin-top: 10px;
+.list {
+  margin-top: 10px;
 }
 
 .listTitle {
-    color: black;
-    font-size: 20px;
-    font-weight: 500;
-    margin-left: 50px;
+  color: black;
+  font-size: 20px;
+  font-weight: 500;
+  margin-left: 50px;
 }
 
-.wrapper{
-    display: flex;
-    width: max-content;
+.wrapper {
+  display: flex;
+  width: max-content;
 }
 
 .listContainer {
-    margin-left: 50px;
-  
-    width: max-content;
+  margin-left: 50px;
+
+  width: max-content;
+}
+
+.sliderBtn {
+  display: flex;
+  align-items: center;
+  height: 20vh;
+  width: 5rem;
+  z-index: 3;
 }

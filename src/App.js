@@ -1,13 +1,6 @@
-import Navbar from "./components/Navbar";
-import Banner from "./components/Banner";
-import ListSlider from "./components/ListSlider";
+import Home from "./pages/Home";
 function App() {
-  return (<>
-   <Navbar/>
-   <Banner/>
-   <ListSlider/>
-   </>
-  );
+  return <Home />;
 }
 
 export default App;
