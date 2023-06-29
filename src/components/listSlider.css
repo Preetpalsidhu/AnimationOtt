@@ -1,5 +1,6 @@
 .list {
   margin-top: 10px;
+  z-index: 2;
 }
 
 .listTitle {
@@ -15,10 +16,11 @@
 }
 
 .listContainer {
-    display: flex;
+  display: flex;
+  gap: 5px;
   margin-left: 50px;
-  transform: translateX(10px);
-  transition: transform 1s linear;
+  transform: translateX(0);
+  transition: transform 1s ease;
 }
 
 .sliderBtn {

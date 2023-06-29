@@ -9,6 +9,8 @@ function Home() {
       <Navbar />
       <Banner />
       <List />
+      <List />
+      <List />
     </div>
   );
 }
