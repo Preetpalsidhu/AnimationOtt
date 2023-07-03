@@ -1,7 +1,7 @@
 
 import "./banner.css";
-import backgroundImage from "./Home.webp";
-import logo from "./Home_logo.png";
+import backgroundImage from "../Home.webp";
+import logo from "../Home_logo.png";
 import { FaPlay } from "react-icons/fa";
 import { AiOutlineInfoCircle } from "react-icons/ai";;
 

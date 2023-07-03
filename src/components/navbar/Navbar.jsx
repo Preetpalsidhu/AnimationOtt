@@ -1,5 +1,4 @@
 import "./navbar.css";
-import { Link } from "react-router-dom";
 import { FaSearch } from 'react-icons/fa';
 import { FaInfinity } from 'react-icons/fa';
 import { useState } from "react";

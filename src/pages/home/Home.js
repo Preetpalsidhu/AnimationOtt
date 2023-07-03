@@ -1,7 +1,7 @@
 import "./home.css";
-import Banner from "../components/Banner";
-import Navbar from "../components/Navbar";
-import List from "../components/ListSlider";
+import Banner from "../../components/banner/Banner";
+import Navbar from "../../components/navbar/Navbar";
+import List from "../../components/listSlider/ListSlider";
 
 function Home() {
   return (

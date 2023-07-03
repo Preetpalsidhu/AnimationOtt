@@ -15,7 +15,7 @@ export default function ListItem({index}){
         <video  src={Trailer} autoPlay={true} loop/>
         <div className="itemInfo">
             <div className="icons">
-                <FaPlay className="icon" onClick={}/>
+                <FaPlay className="icon"/>
                 <FaPlus className="icon" />   
                 <FaThumbsUp className="icon" />   
                 <FaThumbsDown className="icon" />               
