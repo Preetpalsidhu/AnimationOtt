@@ -12,7 +12,7 @@ function Home({ type }) {
     const getRandomLists = async ()=>{
       try{
         const res = await axios.get(
-          `lists`,
+          "http://Localhost:8800/api/lists/",
           {headers : {token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0OWY0ZjcwYTc3MDdiMGYwZDVmNzE3NyIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY4ODQyMjIxOSwiZXhwIjoxNjg4ODU0MjE5fQ.Lv8w02b_4w5V-AWyz0-QTYeh1ZUH1lFEhsGKC0lurS4"},},
           );
         console.log(res);

@@ -52,8 +52,9 @@ router.put("/:id", verify , async (req,res) => {
 router.get("/", verify , async (req,res) => {
    if(req.user.isAdmin){
     try{
-        const movie= await Movie.find();
-        res.status(200).json(movie);
+        let list = [];
+        list= await List.find();
+        res.status(200).json(list);
     }catch(err){
         res.status(500).json(err);
     }
