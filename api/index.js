@@ -20,7 +20,7 @@ app.use(express.json());
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/movies", movieRoute);
-app.use("/api/list", listRoute);
+app.use("/api/lists", listRoute);
 
 app.listen(8800, ()=>{
     console.log("Backend server started");
