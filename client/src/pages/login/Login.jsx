@@ -12,7 +12,7 @@ export default function Login() {
           />
         </div>
       </div>
-      <div className="container">
+      <div className="containerLogin">
         <form>
           <h1>Sign In</h1>
           <input type="email" placeholder="Email or phone number" />
