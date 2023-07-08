@@ -11,7 +11,7 @@ export default function Banner(){
     <div  className="banner">
         <img
           className="background-image"
-          src={backgroundImage}
+          src="https://www.spieltimes.com/wp-content/uploads/2023/01/Netflixs-One-Piece-Releases-first-poster-When-is-it-releasing-1024x576.jpeg"
           alt="background"
         />
         <div className="container">

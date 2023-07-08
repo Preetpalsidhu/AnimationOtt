@@ -12,11 +12,10 @@ function Home({ type }) {
     const getRandomLists = async ()=>{
       try{
         const res = await axios.get(
-          "http://Localhost:8800/api/lists/",
+          "lists/",
           {headers : {token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0OWY0ZjcwYTc3MDdiMGYwZDVmNzE3NyIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY4ODQyMjIxOSwiZXhwIjoxNjg4ODU0MjE5fQ.Lv8w02b_4w5V-AWyz0-QTYeh1ZUH1lFEhsGKC0lurS4"},},
           );
-        console.log(res);
-        //setLists(res.data);
+        setLists(res.data);
       }catch(err){
         console.log(err);
       }
@@ -27,7 +26,9 @@ function Home({ type }) {
     <div className="homePage">
       <Navbar />
       <Banner />
-      <List />
+      {lists.map((list) => (
+        <List list={list}/>
+      ))} 
     </div>
   );
 }
