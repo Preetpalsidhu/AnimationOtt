@@ -13,7 +13,7 @@ function Home({ type }) {
       try{
         const res = await axios.get(
           "lists/",
-          {headers : {token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0OWY0ZjcwYTc3MDdiMGYwZDVmNzE3NyIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY4ODQyMjIxOSwiZXhwIjoxNjg4ODU0MjE5fQ.Lv8w02b_4w5V-AWyz0-QTYeh1ZUH1lFEhsGKC0lurS4"},},
+          {headers : {token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0OWY0ZjcwYTc3MDdiMGYwZDVmNzE3NyIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY4ODkzMDMyNCwiZXhwIjoxNjg5MzYyMzI0fQ.LVs9D7QSSMB-l3FbKsPSmR4OlzQq-H0ogOvK6dLYRFk"},},
           );
         setLists(res.data);
       }catch(err){
@@ -26,8 +26,8 @@ function Home({ type }) {
     <div className="homePage">
       <Navbar />
       <Banner />
-      {lists.map((list) => (
-        <List list={list}/>
+      {lists.map((list, i) => (
+        <List list={list} key={i}/>
       ))} 
     </div>
   );

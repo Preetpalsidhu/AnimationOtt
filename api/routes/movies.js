@@ -62,4 +62,18 @@ router.get("/", verify , async (req,res) => {
    }
 });
 
+//Get by id
+router.get("/:id", verify , async (req,res) => {
+   if(req.user.isAdmin){
+    try{
+        const movie= await Movie.findById(req.params.id);
+        res.status(200).json(movie);
+    }catch(err){
+        res.status(500).json(err);
+    }
+   }else{
+    res.status(403).json("You are not allowed!");
+   }
+});
+
 module.exports = router;

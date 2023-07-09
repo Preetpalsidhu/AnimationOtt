@@ -36,7 +36,7 @@ export default function List({list}) {
         />
         <div className="listContainer" ref={listRef}>
           {list.content.map((item, i) => (
-            <ListItem index={i} item={item} />
+            <ListItem index={i} item={item} key={i} />
           ))}
         </div>
         <FaAngleRight

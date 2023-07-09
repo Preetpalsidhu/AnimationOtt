@@ -1,7 +1,6 @@
 .banner{
     height: 80vh;
     width: 80vw;
-    margin: 0 10vw;
 }
 .container{
     position: relative;
@@ -11,7 +10,7 @@
 .background-image{
     position: absolute;
     height: 80vh;
-    width: 80vw;
+    width: 100vw;
     z-index: 0;
 }
 
