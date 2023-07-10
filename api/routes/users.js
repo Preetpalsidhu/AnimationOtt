@@ -69,7 +69,7 @@ router.get("/all", verify , async (req,res) => {
 
 
 //Get user stats
-router.get("/stats", async (res, req) => {
+router.get("/stats", async (req, res) => {
     const today = new Date();
   const latYear = today.setFullYear(today.setFullYear() - 1);
   const monthsArray = ["January", "February", "March", "April", "May", "June", "July", "September", "October", "November", "December"];
