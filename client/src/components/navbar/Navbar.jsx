@@ -22,8 +22,8 @@ export default function Navbar(){
             <div className="link">
             <ul className="navli">
                 <li><a href="#">Home</a></li>
-                <li><a href="#">Anime</a></li>
-                <li><a href="#">Manga</a></li>
+                <li><a href="#">Movie</a></li>
+                <li><a href="#">Series</a></li>
     </ul>
          {/*   <ul className="link">
                 {links.map(({name, link}) => {
