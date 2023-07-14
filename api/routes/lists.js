@@ -49,8 +49,7 @@ router.put("/:id", verify , async (req,res) => {
 
 
 //Get all
-router.get("/", verify , async (req,res) => {
-   if(req.user.isAdmin){
+router.get("/" , async (req,res) => {
     try{
         let list = [];
         list= await List.find();
@@ -58,9 +57,6 @@ router.get("/", verify , async (req,res) => {
     }catch(err){
         res.status(500).json(err);
     }
-   }else{
-    res.status(403).json("You are not allowed!");
-   }
 });
 
 module.exports = router;

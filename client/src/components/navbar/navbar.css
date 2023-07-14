@@ -4,8 +4,21 @@
 }
 .navbar {
   display: flex;
-  position: sticky;
+  position: fixed;
+  width: 90vw;
   color: white;
+  font-weight: bold;
+  justify-content: space-between;
+  background: linear-gradient(to top, transparent 0%, rgb(0, 0, 0, 0.3) 50%);
+  padding: 5px 5%;
+  z-index: 2;
+  transition: 0.3s ease;
+}
+.navbarScrolled{
+  display: flex;
+  position: fixed;
+  color: white;
+  width: 90vw;
   background-color: #181818;
   font-weight: bold;
   justify-content: space-between;

@@ -2,6 +2,7 @@ import Home from "./pages/home/Home";
 import Register from "./pages/register/Register";
 import Login from "./pages/login/Login";
 import React from "react";
+import Watch from "./pages/watch/Watch";
 import { BrowserRouter as Router, Routes, Route, link } from "react-router-dom";
 
 function App() {
@@ -15,6 +16,9 @@ function App() {
           {" "}
         </Route>
         <Route path="/login" element={<Login />}>
+          {" "}
+        </Route>
+        <Route path="/watch" element={<Watch />}>
           {" "}
         </Route>
       </Routes>

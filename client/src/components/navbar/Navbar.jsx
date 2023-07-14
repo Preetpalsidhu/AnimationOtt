@@ -6,15 +6,15 @@ import { useState } from "react";
 export default function Navbar(){
     const [showSearch, setShowSearch]= useState(false);
     const [ inputHover, setInputHover]= useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
 
-   {/* const links = [
-        {name:"Home", link:"/"},
-        {name:"Anime", link:"/anime"},
-        {name:"Manga", link:"/manga"},
-    ]*/}
+ window.onscroll = () => {
+    setIsScrolled(window.pageYOffset === 0 ? false : true);
+    return () => (window.onscroll = null);
+  };
 
     return(
-        <nav className="navbar">
+        <nav className={isScrolled ? "navbarScrolled" : "navbar"}>
             <div className="start">
             <div className="logo">
             <FaInfinity className="logoSvg"/><a href="#" ><h1 className="logoTitle">Anime</h1></a>
@@ -42,3 +42,5 @@ export default function Navbar(){
         </nav>
     );
 }
+
+

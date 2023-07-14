@@ -13,7 +13,7 @@ function Home({ type }) {
       try{
         const res = await axios.get(
           "lists/",
-          {headers : {token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0OWY0ZjcwYTc3MDdiMGYwZDVmNzE3NyIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY4ODkzMDMyNCwiZXhwIjoxNjg5MzYyMzI0fQ.LVs9D7QSSMB-l3FbKsPSmR4OlzQq-H0ogOvK6dLYRFk"},},
+          {headers : {token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0OWY0ZjcwYTc3MDdiMGYwZDVmNzE3NyIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY4OTI5MTM1NSwiZXhwIjoxNjg5NzIzMzU1fQ.oERMD25jqrlqnEd6d-1x1xaIUgUnP1GJjxELcKtAD_Y"},},
           );
         setLists(res.data);
       }catch(err){
