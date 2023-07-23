@@ -1,46 +1,41 @@
-import "./navbar.css";
-import { FaSearch } from 'react-icons/fa';
-import { FaInfinity } from 'react-icons/fa';
-import { useState } from "react";
+import { Search, AllInclusive } from "@material-ui/icons";
+import { useContext, useState } from "react";
+import "./navbar.scss";
+import { Link } from "react-router-dom";
+import { AuthContext } from "../../authContext/AuthContext";
+import { logout } from "../../authContext/AuthActions";
 
-export default function Navbar(){
-    const [showSearch, setShowSearch]= useState(false);
-    const [ inputHover, setInputHover]= useState(false);
-    const [isScrolled, setIsScrolled] = useState(false);
+const Navbar = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const { dispatch } = useContext(AuthContext);
 
- window.onscroll = () => {
+  window.onscroll = () => {
     setIsScrolled(window.pageYOffset === 0 ? false : true);
     return () => (window.onscroll = null);
   };
+  return (
+    <div className={isScrolled ? "navbar scrolled" : "navbar"}>
+      <div className="container">
+        <div className="left">
+          <div className="logo"><AllInclusive style={ {color: "red", height:25px}}/><h1>Anime</h1></div>
 
-    return(
-        <nav className={isScrolled ? "navbarScrolled" : "navbar"}>
-            <div className="start">
-            <div className="logo">
-            <FaInfinity className="logoSvg"/><a href="#" ><h1 className="logoTitle">Anime</h1></a>
-            </div>
-            <div className="link">
-            <ul className="navli">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Movie</a></li>
-                <li><a href="#">Series</a></li>
-    </ul>
-         {/*   <ul className="link">
-                {links.map(({name, link}) => {
-                    return(<li key={name}>
-                        <Link to={link}>{name}</Link>
-                    </li>);
-                })}
-                
-            </ul>*/}
-            </div>
-            </div>
-            <div className="search">
-                <input type="text" placeholder="Search" className="searchBar"/>
-                <button className="searchBtn"><FaSearch className="searchSvg"/></button>
-            </div>
-        </nav>
-    );
-}
+          <Link to="/" className="link">
+            <span>Home</span>
+          </Link>
+          <Link to="/series" className="link">
+            <span className="navbarmainLinks">Series</span>
+          </Link>
+          <Link to="/movies" className="link">
+            <span className="navbarmainLinks">Movies</span>
+          </Link>
+        </div>
+        <div className="right">
+          <Search className="icon" />
+              <span onClick={() => dispatch(logout())}>Logout</span>
+        </div>
+      </div>
+    </div>
+  );
+};
 
-
+export default Navbar;
