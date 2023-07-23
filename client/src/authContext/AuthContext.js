@@ -13,9 +13,8 @@ export const AuthContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AuthReducer, INITIAL_STATE);
 
   useEffect(() => {
-    console.log("in AuthContxt");
+    console.log("in authcontext");
     localStorage.setItem("user", JSON.stringify(state.user));
-    console.log("in autcontext")
   }, [state.user]);
 
   return (
@@ -27,7 +26,6 @@ export const AuthContextProvider = ({ children }) => {
         dispatch,
       }}
     >
-      
       {children}
     </AuthContext.Provider>
   );

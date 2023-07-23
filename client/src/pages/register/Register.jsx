@@ -1,11 +1,14 @@
+import axios from "axios";
 import { useRef } from "react";
 import { useState } from "react";
-import "./register.css";
+import { useHistory } from "react-router-dom";
+import "./register.scss";
 
 export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
+  const history = useHistory();
 
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -18,6 +21,10 @@ export default function Register() {
     e.preventDefault();
     setPassword(passwordRef.current.value);
     setUsername(usernameRef.current.value);
+    try {
+      await axios.post("auth/register", { email,username, password });
+      history.push("/login");
+    } catch (err) {}
   };
   return (
     <div className="register">
@@ -31,7 +38,7 @@ export default function Register() {
           <button className="loginButton">Sign In</button>
         </div>
       </div>
-      <div className="containerRegister">
+      <div className="container">
         <h1>Unlimited movies, TV shows, and more.</h1>
         <h2>Watch anywhere. Cancel anytime.</h2>
         <p>

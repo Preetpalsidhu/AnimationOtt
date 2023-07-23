@@ -4,8 +4,8 @@ import "./home.css";
 import { userData } from "../../dummyData";
 import WidgetSm from "../../components/widgetSm/WidgetSm";
 import WidgetLg from "../../components/widgetLg/WidgetLg";
+import { useEffect, useMemo, useState } from "react";
 import axios from "axios";
-import { useEffect,useState,useMemo } from "react";
 
 export default function Home() {
   const MONTHS = useMemo(
@@ -34,31 +34,32 @@ export default function Home() {
         const res = await axios.get("/users/stats", {
           headers: {
             token:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0OWY0ZjcwYTc3MDdiMGYwZDVmNzE3NyIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY4OTI5MDc0NSwiZXhwIjoxNjg5NzIyNzQ1fQ.T0xa3HDD9yUyx5_kv496zyKD6fT43MqTei5QzXJaZJ0",
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZTZmYzQ2NDk0Mjc3MTYwNDg4MmMxNiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYyNTgzMjMxMSwiZXhwIjoxNjI2MjY0MzExfQ.ATXV-1TTWIGyVBttTQSf0erRWjsgZ8jHQv1ZsUixbng",
           },
         });
-        const statsList = res.data.sort(function (a,b){
+        const statsList = res.data.sort(function (a, b) {
           return a._id - b._id;
         });
-        statsList.map((item) => 
+        statsList.map((item) =>
           setUserStats((prev) => [
             ...prev,
-            { name: MONTHS[item._id-1], "New User": item.total},
-          ]));
+            { name: MONTHS[item._id - 1], "New User": item.total },
+          ])
+        );
       } catch (err) {
         console.log(err);
       }
     };
     getStats();
   }, [MONTHS]);
-  
+
   return (
     <div className="home">
       <FeaturedInfo />
-      <Chart data={userStats} title="User Analytics" grid dataKey="New User"/>
+      <Chart data={userStats} title="User Analytics" grid dataKey="New User" />
       <div className="homeWidgets">
-        <WidgetSm/>
-        <WidgetLg/>
+        <WidgetSm />
+        <WidgetLg />
       </div>
     </div>
   );
