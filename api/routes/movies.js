@@ -67,4 +67,30 @@ router.get("/:id" , async (req,res) => {
     }
 });
 
+
+//GET RANDOM
+
+router.get("/random", verify, async (req, res) => {
+  const type = req.query.type;
+  console.log(type);
+  let movie;
+  try {
+    if (type === "series") {
+      movie = await Movie.aggregate([
+        { $match: { isSeries: true } },
+        { $sample: { size: 1 } },
+      ]);
+      console.log("in series");
+    } else {
+      movie = await Movie.aggregate([
+        { $match: { isSeries: false } },
+        { $sample: { size: 1 } },
+      ]);
+      console.log("in movie");
+    }
+    res.status(200).json(movie);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 module.exports = router;

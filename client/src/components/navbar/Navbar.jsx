@@ -17,8 +17,7 @@ const Navbar = () => {
     <div className={isScrolled ? "navbar scrolled" : "navbar"}>
       <div className="container">
         <div className="left">
-          <div className="logo"><AllInclusive style={ {color: "red", height:25px}}/><h1>Anime</h1></div>
-
+          <div className="logo"><AllInclusive style={ {color: "red", height: "50px", width: "50px"}}/><h1>Anime</h1></div>
           <Link to="/" className="link">
             <span>Home</span>
           </Link>
@@ -30,8 +29,11 @@ const Navbar = () => {
           </Link>
         </div>
         <div className="right">
+          <div className="searchContainer">
+          <input className="search" type="text" placeholder="Search" />
           <Search className="icon" />
-              <span onClick={() => dispatch(logout())}>Logout</span>
+          </div>
+              <button className="logout" onClick={() => dispatch(logout())}>Logout</button>
         </div>
       </div>
     </div>

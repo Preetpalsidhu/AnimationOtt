@@ -3,6 +3,7 @@ import { useRef } from "react";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import "./register.scss";
+import { AllInclusive } from "@material-ui/icons";
 
 export default function Register() {
   const [email, setEmail] = useState("");
@@ -17,6 +18,10 @@ export default function Register() {
   const handleStart = () => {
     setEmail(emailRef.current.value);
   };
+  const handleSignIn = () => {
+    console.log("sign in clicked")
+     history.push("/login");
+  }
   const handleFinish = async (e) => {
     e.preventDefault();
     setPassword(passwordRef.current.value);
@@ -30,12 +35,8 @@ export default function Register() {
     <div className="register">
       <div className="top">
         <div className="wrapper">
-          <img
-            className="logo"
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/2560px-Netflix_2015_logo.svg.png"
-            alt=""
-          />
-          <button className="loginButton">Sign In</button>
+          <div className="logo"><AllInclusive style={ {color: "red", height: "50px", width: "50px"}}/><h1>Anime</h1></div>
+          <button className="loginButton" onClick={handleSignIn}>Sign In</button>
         </div>
       </div>
       <div className="container">
