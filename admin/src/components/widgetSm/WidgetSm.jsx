@@ -9,10 +9,10 @@ export default function WidgetSm() {
   useEffect(() => {
     const getNewUsers = async () => {
       try {
-        const res = await axios.get("/users?new=true", {
+        const res = await axios.get("http://localhost:8800/api/users/all", {
           headers: {
             token:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZTZmYzQ2NDk0Mjc3MTYwNDg4MmMxNiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYyNTgzMjMxMSwiZXhwIjoxNjI2MjY0MzExfQ.ATXV-1TTWIGyVBttTQSf0erRWjsgZ8jHQv1ZsUixbng",
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YmQ0Y2Q3ZWVkN2Y2MDdhMWMyNzkxNCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY5MDQxMTk2OSwiZXhwIjoxNjkwODQzOTY5fQ.iqjm6x_AQmqPkNKtx2tbO4iDWY3ciU27g_h77LvmH0g",
           },
         });
         setNewUsers(res.data);

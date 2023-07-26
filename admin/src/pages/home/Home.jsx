@@ -31,12 +31,7 @@ export default function Home() {
   useEffect(() => {
     const getStats = async () => {
       try {
-        const res = await axios.get("/users/stats", {
-          headers: {
-            token:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZTZmYzQ2NDk0Mjc3MTYwNDg4MmMxNiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYyNTgzMjMxMSwiZXhwIjoxNjI2MjY0MzExfQ.ATXV-1TTWIGyVBttTQSf0erRWjsgZ8jHQv1ZsUixbng",
-          },
-        });
+        const res = await axios.get("/users/stats");
         const statsList = res.data.sort(function (a, b) {
           return a._id - b._id;
         });

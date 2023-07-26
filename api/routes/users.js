@@ -53,7 +53,6 @@ router.get("/find/:id", verify , async (req,res) => {
 
 //Get all
 router.get("/all", verify , async (req,res) => {
-    if(req.user.isAdmin){
         const query = req.query.new;
         try{
             const users = query? await User.find().sort({_id:-1}).limit(5) : await User.find();
@@ -61,11 +60,7 @@ router.get("/all", verify , async (req,res) => {
         }catch(err){
             res.status(500).json(err);
         }
-    }
-    else{
-        res.status(500).json("You are not allowed");
-    }
-})
+    })
 
 
 //Get user stats
