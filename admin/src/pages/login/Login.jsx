@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { login } from "../../context/authContext/apiCalls";
 import { AuthContext } from "../../context/authContext/AuthContext";
 import "./login.css";
+import { AllInclusive } from "@material-ui/icons";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -17,6 +18,8 @@ export default function Login() {
   return (
     <div className="login">
       <form className="loginForm">
+          <div className="logo"><AllInclusive style={ {color: "red", height: "50px", width: "50px"}}/><h1>Anime</h1></div>
+        
         <input
           type="text"
           placeholder="email"
