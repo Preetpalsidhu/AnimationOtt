@@ -17,9 +17,17 @@
 }
 
 .loginButton {
-  background-color: teal;
+  background-color: red;
   border: none;
   color: white;
   padding: 5px;
   cursor: pointer;
 }
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+}
+h1 {
+  font-size: xx-large;
+  }

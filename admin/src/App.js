@@ -28,7 +28,7 @@ function App() {
         <Route exact path="/">{user ? <Redirect to="/home" /> : <Login />}</Route>
         {console.log(user)}
 
-        {user.isAdmin && (
+        {user && (
           <>
             <Topbar />
             <div className="container">
