@@ -39,6 +39,16 @@ router.delete("/:id", verify , async (req,res) => {
     }
 });
 
+//Search
+router.get("/search/:name" , async (req,res) => {
+    try{
+        const movie= await Movie.find({
+          "title": {$regex: /^O/i}
+        });
+        res.status(200).json(movie);
+    }catch(err){
+        res.status(500).json(err);
+}});
 
 //Get all
 router.get("/" , async (req,res) => {

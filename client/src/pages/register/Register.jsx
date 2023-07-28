@@ -19,7 +19,6 @@ export default function Register() {
     setEmail(emailRef.current.value);
   };
   const handleSignIn = () => {
-    console.log("sign in clicked")
      history.push("/login");
   }
   const handleFinish = async (e) => {

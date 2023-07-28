@@ -23,7 +23,6 @@ export default function ListItem({ index, item }) {
           },
         });
         setMovie(res.data);
-        console.log(res.data)
       } catch (err) {
         console.log(err);
       }
@@ -31,7 +30,7 @@ export default function ListItem({ index, item }) {
     getMovie();
   }, [item]);
 
-  return (
+  return ( 
     <Link to={{ pathname: "/watch", movie: movie }}>
       <div
         className="listItem"
@@ -51,6 +50,7 @@ export default function ListItem({ index, item }) {
                 <ThumbDownOutlined className="icon" />
               </div>
               <div className="itemInfoTop">
+                 <span>{movie.title}</span>
                 <span>{movie.duration}</span>
                 <span className="limit">+{movie.limit}</span>
                 <span>{movie.year}</span>

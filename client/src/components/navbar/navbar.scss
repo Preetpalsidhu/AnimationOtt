@@ -18,7 +18,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 70px;
+    //height: 70px;
 
     .left {
       display: flex;
@@ -57,8 +57,13 @@
       display: flex;
       align-items: center;
 
-      .searchContainer{
+      .searchComponent{
         display: flex;
+        flex-direction: column;
+      
+      .searchBar{
+        display: flex;
+        flex-direction: row;
         padding: 0%;
         align-items: center;
         border-style: solid;
@@ -81,7 +86,12 @@
         padding: 0;
         cursor: pointer;
       }}
-
+      
+     .searchResult{
+      width: 25vw;
+     }
+    }
+  
       img {
         width: 30px;
         height: 30px;
@@ -115,6 +125,5 @@
           }
         }
       }
-    }
+    }}
   }
-}
