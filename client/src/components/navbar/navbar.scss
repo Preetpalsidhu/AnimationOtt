@@ -2,6 +2,7 @@
 
 .navbar {
   width: 100%;
+  height: 7vh;
   color: white;
   font-size: 14px;
   position: fixed;
@@ -86,12 +87,19 @@
         padding: 0;
         cursor: pointer;
       }}
-      
-     .searchResult{
-      width: 25vw;
-     }
     }
-  
+     .searchResult {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+       width: 25vw;
+       color: white;
+
+       .searchImg {
+        height: 5vh;
+         width: 10vw;
+       }
+     }
       img {
         width: 30px;
         height: 30px;
