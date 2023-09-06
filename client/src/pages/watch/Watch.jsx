@@ -10,9 +10,9 @@ export default function Watch() {
       <Link to="/">
         <div className="back">
           <ArrowBackOutlined />
-          Home
         </div>
       </Link>
+      <h1>{movie.title}</h1>
       <video className="video" autoPlay progress controls src={movie.video} />
     </div>
   );

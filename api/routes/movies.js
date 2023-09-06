@@ -1,6 +1,8 @@
 const router = require("express").Router();
 const Movie = require("../models/Movie");
 const verify = require("../verifyToken");
+var mongoose = require('mongoose');
+
 
 //Add
 router.post("/", verify , async (req,res) => {
@@ -41,9 +43,13 @@ router.delete("/:id", verify , async (req,res) => {
 
 //Search
 router.get("/search/:name" , async (req,res) => {
+  let query = req.params.name ;
+    
     try{
         const movie= await Movie.find({
-          "title": {$regex: /^O/i}
+          // "title": {$regex: /^N/i}
+          "title": {$regex: new RegExp(`^${query}`,'i')}
+
         });
         res.status(200).json(movie);
     }catch(err){
@@ -60,7 +66,7 @@ router.get("/" , async (req,res) => {
 }});
 
 //Get by id
-router.get("/:id" , async (req,res) => {
+router.get("/id/:id" , async (req,res) => {
     try{
         const movie= await Movie.findById(req.params.id);
         res.status(200).json(movie);
@@ -71,8 +77,7 @@ router.get("/:id" , async (req,res) => {
 
 
 //GET RANDOM
-
-router.get("/random", verify, async (req, res) => {
+router.get("/random", async (req, res) => {
   const type = req.query.type;
   console.log(type);
   let movie;
@@ -82,17 +87,105 @@ router.get("/random", verify, async (req, res) => {
         { $match: { isSeries: true } },
         { $sample: { size: 1 } },
       ]);
-      console.log("in series");
     } else {
       movie = await Movie.aggregate([
         { $match: { isSeries: false } },
         { $sample: { size: 1 } },
       ]);
-      console.log("in movie");
     }
     res.status(200).json(movie);
   } catch (err) {
     res.status(500).json(err);
   }
 });
+
+router.get("/movieCount", async(req,res) => {
+  const today= new Date();
+  const lastMonth= today.setMonth(today.setMonth()-1);
+  try{
+      const count = await Movie.count();
+      const monthCount= await Movie.aggregate([
+          {$project: {month: {$month: '$createdAt'}}},
+          {$match: {month: 7}},
+          {$match: {isSeries: false}}
+        ]);
+      const diff = count - monthCount.length;
+      res.status(200).json([count, diff]);
+  }catch(error){
+    res.status(500).json(error);
+  }
+})
+
+router.get("/seriesCount", async(req,res) => {
+  const today= new Date();
+  const lastMonth= today.setMonth(today.setMonth()-1);
+  try{
+      const count = await Movie.count({isSeries: true});
+      const monthCount= await Movie.aggregate([
+          {$project: {month: {$month: '$createdAt'}}},
+          {$match: {month: 7}},
+          {$match: {isSeries: true}}
+        ]);
+      const diff = count - monthCount.length;
+      res.status(200).json([count, diff]);
+  }catch(error){
+      res.status(500).json(error);
+  }
+})
+
+
+//Get movie stats
+router.get("/movieStats", async (req, res) => {
+  const today = new Date();
+const latYear = today.setFullYear(today.setFullYear() - 1);
+const monthsArray = ["January", "February", "March", "April", "May", "June", "July", "September", "October", "November", "December"];
+try {
+  const data = await Movie.aggregate([
+    {$match: {isSeries: false}},
+    {
+      $project: {
+        month: { $month: "$createdAt" },
+      },
+    },
+
+    {
+      $group: {
+        _id: "$month",
+        total: { $sum: 1 },
+      },
+    },
+  ]);
+  res.status(200).json(data);
+} catch (err) {
+  res.status(500).json(err);
+}
+})
+
+
+//Get series stats
+router.get("/seriesStats", async (req, res) => {
+  const today = new Date();
+const latYear = today.setFullYear(today.setFullYear() - 1);
+const monthsArray = ["January", "February", "March", "April", "May", "June", "July", "September", "October", "November", "December"];
+try {
+  const data = await Movie.aggregate([
+    {
+      $project: {
+        month: { $month: "$createdAt" },
+        isSeries: true
+      },
+    },
+    {
+      $group: {
+        _id: "$month",
+        total: { $sum: 1 },
+      },
+    },
+  ]);
+  res.status(200).json(data);
+} catch (err) {
+  res.status(500).json(err);
+}
+})
+
 module.exports = router;

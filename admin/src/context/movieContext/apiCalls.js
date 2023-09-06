@@ -12,6 +12,8 @@ import {
 } from "./MovieActions";
 
 export const getMovies = async (dispatch) => {
+  console.log("Movie Dispatch",dispatch);
+
   dispatch(getMoviesStart());
   try {
     const res = await axios.get("/movies", {
@@ -27,6 +29,7 @@ export const getMovies = async (dispatch) => {
 
 //create
 export const createMovie = async (movie, dispatch) => {
+
   dispatch(createMovieStart());
   try {
     const res = await axios.post("http://localhost:8800/api/movies", movie, {

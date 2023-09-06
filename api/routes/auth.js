@@ -22,8 +22,7 @@ router.post("/register", async (req,res) => {
 })
 
 router.post("/login", async (req, res) => {
-  try{
-    console.log("in login api");
+  try {
     const user = await User.findOne({ email: req.body.email });
     if(!user){
        res.status(401).json("User not found");
@@ -43,8 +42,7 @@ router.post("/login", async (req, res) => {
       res.status(401).json("Wrong password or username!");
     else
     res.status(200).json({info, accessToken});
-    
-  }} catch (err) {
+    }} catch (err) {
     res.status(500).json(err);
   }
 }

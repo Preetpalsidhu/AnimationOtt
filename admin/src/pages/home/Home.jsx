@@ -1,7 +1,6 @@
 import Chart from "../../components/chart/Chart";
 import FeaturedInfo from "../../components/featuredInfo/FeaturedInfo";
 import "./home.css";
-import { userData } from "../../dummyData";
 import WidgetSm from "../../components/widgetSm/WidgetSm";
 import WidgetLg from "../../components/widgetLg/WidgetLg";
 import { useEffect, useMemo, useState } from "react";
@@ -27,9 +26,11 @@ export default function Home() {
   );
 
   const [userStats, setUserStats] = useState([]);
+  const [movieStats, setMovieStats] = useState([]);
+  const [seriesStats, setSeriesStats] = useState([]);
 
   useEffect(() => {
-    const getStats = async () => {
+    const getUserStats = async () => {
       try {
         const res = await axios.get("/users/stats");
         const statsList = res.data.sort(function (a, b) {
@@ -45,17 +46,53 @@ export default function Home() {
         console.log(err);
       }
     };
-    getStats();
+    getUserStats();
+
+    const getMoviesStats = async () => {
+      try {
+        const res = await axios.get("/movies/movieStats");
+        const statsList = res.data.sort(function (a, b) {
+          return a._id - b._id;
+        });
+        statsList.map((item) =>
+          setMovieStats((prev) => [
+            ...prev,
+            { name: MONTHS[item._id - 1], "New Movie": item.total },
+          ])
+        );
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getMoviesStats();
+
+    const getSeriesStats = async () => {
+      try{
+      const res = await axios.get("/movies/seriesStats");
+      const statsList = res.data.sort(function (a,b) {
+        return a._id - b._id;
+      })
+      statsList.map((item) => [
+        setSeriesStats((prev) =>[
+        ...prev,
+        {name: MONTHS[item.id -1], "New Series": item.total},
+      ])]);} catch(error){
+        console.log(error);
+      }
+    };
+    getSeriesStats();
   }, [MONTHS]);
 
   return (
     <div className="home">
       <FeaturedInfo />
-      <Chart data={userStats} title="User Analytics" grid dataKey="New User" />
+      <Chart data={movieStats} title="Movies Analytics" grid dataKey="New Movie" />
+     <Chart data={userStats} title="User Analytics" grid dataKey="New User" />
+      <Chart data={seriesStats} title="Series Analytics" grid dataKey="New Series" />
       <div className="homeWidgets">
         <WidgetSm />
         <WidgetLg />
       </div>
     </div>
-  );
+  ); 
 }

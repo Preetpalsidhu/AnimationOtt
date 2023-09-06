@@ -3,6 +3,8 @@ import "./newMovie.css";
 import storage from "../../firebase";
 import { createMovie } from "../../context/movieContext/apiCalls";
 import { MovieContext } from "../../context/movieContext/MovieContext";
+import { CircularProgressbar } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
 
 export default function NewMovie() {
   const [movie, setMovie] = useState(null);
@@ -13,6 +15,7 @@ export default function NewMovie() {
   const [video, setVideo] = useState(null);
   const [uploaded, setUploaded] = useState(0);
 
+  let progress=0;
   const { dispatch } = useContext(MovieContext);
 
   const handleChange = (e) => {
@@ -27,7 +30,7 @@ export default function NewMovie() {
       uploadTask.on(
         "state_changed",
         (snapshot) => {
-          const progress =
+          progress =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           console.log("Upload is " + progress + "% done");
         },
@@ -74,6 +77,8 @@ export default function NewMovie() {
             name="img"
             onChange={(e) => setImg(e.target.files[0])}
           />
+           <CircularProgressbar value = {progress} text = {`${progress}%`} />
+
         </div>
         <div className="addProductItem">
           <label>Title image</label>
@@ -83,6 +88,7 @@ export default function NewMovie() {
             name="imgTitle"
             onChange={(e) => setImgTitle(e.target.files[0])}
           />
+        
         </div>
         <div className="addProductItem">
           <label>Thumbnail image</label>

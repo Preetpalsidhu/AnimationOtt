@@ -52,16 +52,25 @@ router.get("/find/:id", verify , async (req,res) => {
 )
 
 //Get all
-router.get("/all", verify , async (req,res) => {
+router.get("/", verify , async (req,res) => {
         const query = req.query.new;
         try{
-            const users = query? await User.find().sort({_id:-1}).limit(5) : await User.find();
+            const users = await User.find();
             res.status(200).json(users);
         }catch(err){
             res.status(500).json(err);
         }
     })
 
+    //Get all
+router.get("/new", async (req,res) => {
+    try{
+        const users = await User.find().limit(5);
+        res.status(200).json(users);
+    }catch(err){
+        res.status(500).json(err);
+    }
+})
 
 //Get user stats
 router.get("/stats", async (req, res) => {
@@ -86,6 +95,22 @@ router.get("/stats", async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
+})
+
+router.get("/count", async(req,res) => {
+    const today= new Date();
+    const lastMonth= today.setMonth(today.setMonth()-1);
+    try{
+        const count = await User.count();
+        const monthCount= await User.aggregate([
+            {$project: {month: {$month: '$createdAt'}}},
+            {$match: {month: 7}}
+          ]);
+        const diff = count - monthCount.length;
+        res.status(200).json([count, diff]);
+    }catch(error){
+        res.status(500).json(error);
+    }
 })
 
 module.exports = router;
